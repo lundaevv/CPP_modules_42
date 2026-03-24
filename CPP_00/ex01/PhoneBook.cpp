@@ -3,6 +3,8 @@
 #include <string>
 #include <iomanip>
 
+static const int COLUMN_WIDTH = 10;
+
 PhoneBook::PhoneBook() : nextIndex(0), contactCount(0)
 {
 }
@@ -73,8 +75,8 @@ static bool getInput(const std::string& prompt, std::string& input)
 
 static std::string formatColumn(const std::string& str)
 {
-	if (str.length() > PhoneBook::COLUMN_WIDTH)
-		return str.substr(0, PhoneBook::COLUMN_WIDTH - 1) + PhoneBook::translate(PhoneBook::SEPARATOR_WORD);
+	if (str.length() > COLUMN_WIDTH)
+		return str.substr(0, COLUMN_WIDTH - 1) + PhoneBook::translate(PhoneBook::SEPARATOR_WORD);
 	return str;
 }
 
@@ -107,10 +109,10 @@ bool PhoneBook::addContact()
 
 static void displayContactRow(int index, const Contact& contact)
 {
-	std::cout << std::setw(PhoneBook::COLUMN_WIDTH) << index << PhoneBook::translate(PhoneBook::SEPARATOR_COLUMN);
-	std::cout << std::setw(PhoneBook::COLUMN_WIDTH) << formatColumn(contact.getFirstName()) << PhoneBook::translate(PhoneBook::SEPARATOR_COLUMN);
-	std::cout << std::setw(PhoneBook::COLUMN_WIDTH) << formatColumn(contact.getLastName()) << PhoneBook::translate(PhoneBook::SEPARATOR_COLUMN);
-	std::cout << std::setw(PhoneBook::COLUMN_WIDTH) << formatColumn(contact.getNickname()) << std::endl;
+	std::cout << std::setw(COLUMN_WIDTH) << index << PhoneBook::translate(PhoneBook::SEPARATOR_COLUMN);
+	std::cout << std::setw(COLUMN_WIDTH) << formatColumn(contact.getFirstName()) << PhoneBook::translate(PhoneBook::SEPARATOR_COLUMN);
+	std::cout << std::setw(COLUMN_WIDTH) << formatColumn(contact.getLastName()) << PhoneBook::translate(PhoneBook::SEPARATOR_COLUMN);
+	std::cout << std::setw(COLUMN_WIDTH) << formatColumn(contact.getNickname()) << std::endl;
 }
 
 static void displayContactDetails(const Contact& contact)

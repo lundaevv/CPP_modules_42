@@ -31,8 +31,6 @@ class PhoneBook
 		};
 
 		static const char* translate(MessageKey key);
-		static const int	BOOK_SIZE = 8;
-		static const int	COLUMN_WIDTH = 10;
 
 		PhoneBook();
 		bool addContact();
@@ -40,6 +38,7 @@ class PhoneBook
 
 	private:
 
+		static const int	BOOK_SIZE = 8;
 		Contact	contacts[BOOK_SIZE];
 		int		nextIndex;
 		int		contactCount;
