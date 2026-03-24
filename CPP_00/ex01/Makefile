@@ -3,9 +3,9 @@ SRCS =	main.cpp \
 		PhoneBook.cpp
 
 OBJS = $(SRCS:.cpp=.o)
-NAME = phonebook
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+NAME = $(notdir $(CURDIR))
 CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 all: $(NAME)

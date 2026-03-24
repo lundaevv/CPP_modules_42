@@ -7,6 +7,7 @@
 # Executables
 a.out
 *exe
+CPP_*/ex*/ex*
 
 # Object / binary directories
 obj/

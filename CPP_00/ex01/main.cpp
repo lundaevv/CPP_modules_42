@@ -9,20 +9,20 @@ int main()
 
 	while (true)
 	{
-		std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+		std::cout << PhoneBook::translate(PhoneBook::PRMPT_COMMAND);
 		if (!std::getline(std::cin, command))
 			break;
-		if (command == "ADD")
+		if (command == PhoneBook::translate(PhoneBook::CMD_ADD))
 		{
 			if (!phoneBook.addContact())
 				break;
 		}
-		else if (command == "SEARCH")
+		else if (command == PhoneBook::translate(PhoneBook::CMD_SEARCH))
 			phoneBook.searchContacts();
-		else if (command == "EXIT")
+		else if (command == PhoneBook::translate(PhoneBook::CMD_EXIT))
 			break;
 		else if (!command.empty())
-			std::cout << "Invalid command." << std::endl;
+			std::cout << PhoneBook::translate(PhoneBook::MSG_INVALID_COMMAND) << std::endl;
 	}
 	return 0;
 }
