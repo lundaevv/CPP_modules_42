@@ -1,18 +1,21 @@
 #include "Zombie.hpp"
 #include <iostream>
 
-static const char* const MESSAGE = ": BraiiiiiiinnnzzzZ...";
-
 Zombie::Zombie()
 {
 }
 
-void Zombie::setName( std::string name )
+Zombie::~Zombie()
+{
+	std::cout << _name << " destroyed." << std::endl;
+}
+
+void Zombie::setName(std::string name)
 {
 	_name = name;
 }
 
-void Zombie::announce( void )
+void Zombie::announce(void)
 {
-	std::cout << _name << MESSAGE << std::endl;
+	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
