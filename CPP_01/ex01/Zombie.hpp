@@ -3,8 +3,7 @@
 
 #include <string>
 
-class Zombie
-{
+class Zombie {
 public:
     Zombie();
     ~Zombie();
