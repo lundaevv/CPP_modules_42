@@ -14,7 +14,7 @@ Fixed::Fixed(const int value)
     std::cout << "Int constructor called" << std::endl;
 
     // shifting left by n bits is the same as <value * 2^n>:
-    _value = value << _fractionalBits; 
+    _value = value << _fractionalBits;
 }
 
 // converts the float value to the corresponding fixed-point value
@@ -25,7 +25,7 @@ Fixed::Fixed(const float value)
     // bit shifting only works on integral parts (here value is a float)
     // 1 shifted left by n bits is the same as <1 * 2^n> meaning <value * (1 * 2^n)>
     // roundf rounds a float to the nearest integer (but return a float)
-    _value = static_cast<int>(roundf(value * (1 << _fractionalBits))); 
+    _value = static_cast<int>(roundf(value * (1 << _fractionalBits)));
 }
 
 Fixed::Fixed(const Fixed &other)
@@ -50,13 +50,13 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits(void) const
 {
-    //std::cout << "getRawBits member function called" << std::endl;
+    // std::cout << "getRawBits member function called" << std::endl;
     return this->_value;
 }
 
 void Fixed::setRawBits(int const raw)
 {
-    //std::cout << "setRawBits member function called" << std::endl;
+    // std::cout << "setRawBits member function called" << std::endl;
     this->_value = raw;
 }
 
@@ -67,7 +67,7 @@ float Fixed::toFloat(void) const
 }
 
 // converts the fixed-point value to an integer value
-int Fixed::toInt( void ) const
+int Fixed::toInt(void) const
 {
     return _value >> _fractionalBits;
 }

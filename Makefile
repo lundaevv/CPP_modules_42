@@ -14,17 +14,22 @@ all:
 
 clean:
 	@for dir in $(MAKE_DIRS); do \
-		$(MAKE) -C $$dir clean; \
+		$(MAKE) -s -C $$dir clean; \
 	done
-	@find $(MODULE_DIRS) -type f -name '*.o' -delete
+	@find $(MODULE_DIRS) -type f -name '*.o' -print -delete
 
 fclean: clean
 	@for dir in $(MAKE_DIRS); do \
-		$(MAKE) -C $$dir fclean; \
+		$(MAKE) -s -C $$dir fclean; \
 	done
 	@for dir in $(PROJECT_DIRS); do \
-		$(RM) $$dir/$$(basename $$dir); \
+		file="$$dir/$$(basename $$dir)"; \
+		if [ -f "$$file" ]; then \
+			printf '%s\n' "$$file"; \
+			$(RM) "$$file"; \
+		fi; \
 	done
-	@find $(MODULE_DIRS) -type f -name 'a.out' -delete
+	@find $(MODULE_DIRS) -type f -name 'a.out' -print -delete
+	@find $(MODULE_DIRS) -type f -name '*.replace' -print -delete
 
 re: fclean all
