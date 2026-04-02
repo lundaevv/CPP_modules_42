@@ -5,6 +5,7 @@
 Fixed::Fixed()
 {
     std::cout << "Default constructor called" << std::endl;
+    
     _value = 0;
 }
 
@@ -31,13 +32,15 @@ Fixed::Fixed(const float value)
 Fixed::Fixed(const Fixed &other)
 {
     std::cout << "Copy constructor called" << std::endl;
-    //_value = other._value; - this would be better without using coppy assignment operator inside copy constructor
+
+    // _value = other._value; - this would be better without using coppy assignment operator inside copy constructor
     *this = other; // this is for the task since copy constructor call prints also the copy assignment message
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
     std::cout << "Copy assignment operator called" << std::endl;
+
     if (this != &other)
         this->_value = other._value;
     return *this;
