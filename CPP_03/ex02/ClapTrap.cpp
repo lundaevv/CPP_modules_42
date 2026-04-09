@@ -1,8 +1,6 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-/* ========================================================================== */
-
 ClapTrap::ClapTrap()
     : _name("Default"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
@@ -26,12 +24,15 @@ ClapTrap::ClapTrap(const std::string &name)
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other)
+    : _name(other._name),
+      _hitPoints(other._hitPoints),
+      _energyPoints(other._energyPoints),
+      _attackDamage(other._attackDamage)
 {
     std::cout << "Copy constructor: "
-              << "ClapTrap " << "\"" << other._name << "\"" << " > "
-              << "Status: Cloned into a newly created ClapTrap" << std::endl;
-
-    *this = other;
+              << "ClapTrap " << "\"" << other._name << "\""
+              << " > " << "Status: Cloned into a newly created ClapTrap"
+              << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
@@ -48,7 +49,6 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
         this->_energyPoints = other._energyPoints;
         this->_attackDamage = other._attackDamage;
     }
-
     return *this;
 }
 
@@ -58,8 +58,6 @@ ClapTrap::~ClapTrap()
               << "ClapTrap " << "\"" << this->_name << "\""
               << " > " << "Status: Destroyed" << std::endl;
 }
-
-/* ========================================================================== */
 
 const std::string &ClapTrap::getName() const
 {
@@ -77,8 +75,6 @@ void ClapTrap::setName(const std::string &name)
         this->_name = name;
 }
 
-/* ========================================================================== */
-
 void ClapTrap::attack(const std::string &target)
 {
     std::cout << "** ClapTrap " << "\"" << this->_name << "\""
@@ -88,18 +84,18 @@ void ClapTrap::attack(const std::string &target)
         std::cerr << "Error: target name cannot be empty or just whitespaces" << std::endl;
     else
     {
-        if (this->_hitPoints <= 0)
+        if (this->_hitPoints == 0)
             std::cout << "ClapTrap " << "\"" << this->_name << "\""
-                      << " can't attack: " << "no hit points left =(" << std::endl;
-        else if (this->_energyPoints <= 0)
+                      << " can't attack: no hit points left =(" << std::endl;
+        else if (this->_energyPoints == 0)
             std::cout << "ClapTrap " << "\"" << this->_name << "\""
-                      << " can't attack: " << "no energy points left =(" << std::endl;
+                      << " can't attack: no energy points left =(" << std::endl;
         else
         {
             this->_energyPoints--;
             std::cout << "ClapTrap " << "\"" << this->_name << "\""
-                      << " attacks " << target << " causing " << "<"
-                      << this->_attackDamage << ">"
+                      << " attacks " << target << " causing "
+                      << "<" << this->_attackDamage << ">"
                       << " points of damage!" << std::endl;
             std::cout << "ClapTrap " << "\"" << this->_name << "\""
                       << " has " << "<" << this->_energyPoints << ">"
@@ -116,7 +112,7 @@ void ClapTrap::takeDamage(unsigned int amount)
     std::cout << "ClapTrap " << "\"" << this->_name << "\""
               << " has " << "<" << this->_hitPoints << ">"
               << " hit points" << std::endl;
-    if (this->_hitPoints <= 0)
+    if (this->_hitPoints == 0)
         std::cout << "ClapTrap " << "\"" << this->_name << "\""
                   << " is already dead" << std::endl;
     else if (this->_hitPoints <= amount)
@@ -148,12 +144,12 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
     std::cout << "** ClapTrap " << "\"" << this->_name << "\""
               << " wants to get repaired **" << std::endl;
-    if (this->_hitPoints <= 0)
+    if (this->_hitPoints == 0)
         std::cout << "ClapTrap " << "\"" << this->_name << "\""
                   << " is already dead" << std::endl;
-    else if (this->_energyPoints <= 0)
+    else if (this->_energyPoints == 0)
         std::cout << "ClapTrap " << "\"" << this->_name << "\""
-                  << " can't be repaired: " << "no energy points left =(" << std::endl;
+                  << " can't be repaired: no energy points left =(" << std::endl;
     else
     {
         this->_hitPoints += amount;

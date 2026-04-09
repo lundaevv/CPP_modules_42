@@ -26,12 +26,14 @@ ClapTrap::ClapTrap(const std::string &name)
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other)
+    : _name(other._name),
+      _hitPoints(other._hitPoints),
+      _energyPoints(other._energyPoints),
+      _attackDamage(other._attackDamage)
 {
     std::cout << "Copy constructor: "
               << "ClapTrap " << "\"" << other._name << "\"" << " > "
               << "Status: Cloned into a newly created ClapTrap" << std::endl;
-
-    *this = other;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
@@ -40,7 +42,6 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
               << "ClapTrap " << "\"" << other._name << "\""
               << " > " << "Status: Assigned to " << "ClapTrap "
               << "\"" << this->_name << "\"" << std::endl;
-
     if (this != &other)
     {
         this->_name = other._name;
@@ -48,7 +49,6 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
         this->_energyPoints = other._energyPoints;
         this->_attackDamage = other._attackDamage;
     }
-
     return *this;
 }
 
